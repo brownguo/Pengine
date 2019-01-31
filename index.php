@@ -10,7 +10,8 @@ define('BASE_PATH',str_replace('\\','/',realpath(dirname(__FILE__).'/'))."/");
 
 define('APP_DEBUG', true);
 
-echo BASE_PATH.'config/config.php'.PHP_EOL;
-$config = require(BASE_PATH . 'core/Pengine.php');
+$config = require(BASE_PATH . '/Pengine/Core/Pengine.php');
 
+
+print_r(get_included_files());
 Pengine::run();
