@@ -8,7 +8,6 @@
 
 class Pengine
 {
-
     public function __construct()
     {
 
@@ -23,12 +22,11 @@ class Pengine
 
     protected static function init()
     {
-
     }
 
     protected static function autoload()
     {
-        $LoadableModules = array('Config','plugins');
+        $LoadableModules = array('/App/Controller','/App/Model');
 
         spl_autoload_register(function($name)
         {
@@ -36,7 +34,7 @@ class Pengine
 
             foreach ($LoadableModules as $module)
             {
-                $filename =  SERVER_BASE.$module.'/'.$name . '.php';
+                $filename =  BASE_PATH.$module.'/'.$name . '.php';
                 if (file_exists($filename))
                     require_once $filename;
             }
@@ -45,6 +43,7 @@ class Pengine
 
     protected static function dispathch()
     {
+        new index();
 
     }
 }
