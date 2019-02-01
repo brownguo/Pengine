@@ -26,11 +26,9 @@ class Pengine
 
     protected static function autoload()
     {
-        $LoadableModules = array('/App/Controller','/App/Model');
-
         spl_autoload_register(function($name)
         {
-            global $LoadableModules;
+            $LoadableModules = array('/App/Controller','/App/Model');
 
             foreach ($LoadableModules as $module)
             {
@@ -43,7 +41,7 @@ class Pengine
 
     protected static function dispathch()
     {
-        new index();
-
+        new IndexController();
+        print_r(get_included_files());
     }
 }

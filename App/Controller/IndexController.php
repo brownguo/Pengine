@@ -6,7 +6,7 @@
  * Time: 9:54 PM
  */
 
-class index
+class IndexController
 {
     public function test()
     {
