@@ -8,9 +8,9 @@
 
 class IndexController
 {
-    public function test($args)
+    public function test($a)
     {
-        print_r($args);
+        print_r($a);
         echo "Instance is Test!\n";
     }
 }
