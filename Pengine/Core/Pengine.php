@@ -22,13 +22,14 @@ class Pengine
 
     protected static function init()
     {
+
     }
 
     protected static function autoload()
     {
         spl_autoload_register(function($name)
         {
-            $LoadableModules = array('/App/Controller','/App/Model');
+            $LoadableModules = array('/App/Controller','/App/Model','App/Config','App/Model','App/View');
 
             foreach ($LoadableModules as $module)
             {
@@ -41,7 +42,34 @@ class Pengine
 
     protected static function dispathch()
     {
-        new IndexController();
-        print_r(get_included_files());
+        $params = array();
+
+        $Uri      = $_SERVER['REQUEST_URI'];
+        $Position = strpos($Uri, '?');
+
+        $Url = $Position === false ? $Uri : substr($Uri, 0, $Position);
+        $Url = trim($Url, '/');
+
+        if($Url)
+        {
+            $UrlArray   = explode('/',$Url);
+            $Controller = ucfirst($UrlArray[0]);
+            $Action     = $UrlArray[1];
+        }
+
+        $Controller = $Controller.'Controller';
+
+        if(!class_exists($Controller))
+        {
+            exit('Controller not found!');
+        }
+        if(!method_exists($Controller,$Action))
+        {
+            exit(sprintf('%s not found %s Action',$Controller,$Action));
+        }
+
+        $dispathch = new $Controller();
+
+        call_user_func_array(array($dispathch,$Action),$params);
     }
 }

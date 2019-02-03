@@ -12,6 +12,4 @@ define('APP_DEBUG', true);
 
 $config = require(BASE_PATH . '/Pengine/Core/Pengine.php');
 
-
-print_r(get_included_files());
 Pengine::run();

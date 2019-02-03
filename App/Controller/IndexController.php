@@ -10,6 +10,6 @@ class IndexController
 {
     public function test()
     {
-        echo "Instance is Index!".PHP_EOL;
+        echo "Instance is Test!".PHP_EOL;
     }
 }
