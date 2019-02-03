@@ -50,6 +50,13 @@ class Pengine
         $Url = $Position === false ? $Uri : substr($Uri, 0, $Position);
         $Url = trim($Url, '/');
 
+        parse_str($_SERVER['QUERY_STRING'],$parse_arr);
+
+        if($parse_arr)
+        {
+            $params = $parse_arr;
+        }
+
         if($Url)
         {
             $UrlArray   = explode('/',$Url);

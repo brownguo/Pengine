@@ -8,8 +8,9 @@
 
 class IndexController
 {
-    public function test()
+    public function test($args)
     {
-        echo "Instance is Test!".PHP_EOL;
+        print_r($args);
+        echo "Instance is Test!\n";
     }
 }
