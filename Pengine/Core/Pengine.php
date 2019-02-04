@@ -42,8 +42,6 @@ class Pengine
 
     protected static function dispathch()
     {
-        $params = array();
-
         $Uri      = $_SERVER['REQUEST_URI'];
         $Position = strpos($Uri, '?');
 
@@ -75,8 +73,6 @@ class Pengine
             exit(sprintf('%s not found %s Action',$Controller,$Action));
         }
 
-        $dispathch = new $Controller();
-
-        call_user_func_array(array($dispathch,$Action),$params);
+        call_user_func_array(array($Controller,$Action),array($params));
     }
 }
