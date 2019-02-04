@@ -18,6 +18,7 @@ class Pengine
         static::init();
         static::autoload();
         static::dispathch();
+        static::checkEnv();
     }
 
     protected static function init()
@@ -74,5 +75,20 @@ class Pengine
         }
 
         call_user_func_array(array($Controller,$Action),array($params));
+    }
+
+    protected static function checkEnv()
+    {
+        if(APP_DEBUG)
+        {
+            error_reporting(E_ALL);
+            ini_set('display_errors','on');
+        }
+        else
+        {
+            error_reporting(E_ALL);
+            ini_set('display_errors','off');
+            ini_set('log_errors','on');
+        }
     }
 }
