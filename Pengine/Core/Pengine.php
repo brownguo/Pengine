@@ -8,6 +8,8 @@
 
 class Pengine
 {
+    protected static $startTime;
+
     public function __construct()
     {
 
@@ -19,11 +21,12 @@ class Pengine
         static::autoload();
         static::dispathch();
         static::checkEnv();
+        static::rmRegisterGlobals();
     }
 
     protected static function init()
     {
-
+        static::$startTime = microtime(true);
     }
 
     protected static function autoload()
@@ -89,6 +92,25 @@ class Pengine
             error_reporting(E_ALL);
             ini_set('display_errors','off');
             ini_set('log_errors','on');
+        }
+    }
+
+    protected static function rmRegisterGlobals()
+    {
+        if(ini_get('register_globals'))
+        {
+            $rg_map = array('_SESSION','_POST','_GET','_COOKIES','_REQUEST','_SERVER','_ENV','_FILES');
+
+            foreach ($rg_map as $func)
+            {
+                foreach ($GLOBALS[$func] as $key => $var)
+                {
+                    if($var == $GLOBALS[$key])
+                    {
+                        unset($GLOBALS[$key]);
+                    }
+                }
+            }
         }
     }
 }
