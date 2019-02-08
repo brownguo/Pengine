@@ -12,7 +12,7 @@ class Pengine
 
     public function __construct()
     {
-
+        static::$startTime = microtime(true);
     }
 
     public static function run()
@@ -26,7 +26,7 @@ class Pengine
 
     protected static function init()
     {
-        static::$startTime = microtime(true);
+        //static::$startTime = microtime(true);
     }
 
     protected static function autoload()
